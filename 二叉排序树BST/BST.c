@@ -102,6 +102,47 @@ static BOOL _InsertBSTreeIterate(BSTNode** node, ElemType arr)           // 二叉
 		  return FALSE;
 }
 
+BOOL RemoveBSTree(BST T, ElemType key)         //指定结点删除
+{
+		  assert(T.root != NULL);
+		  return _RemoveBSTree(T.root, key);
+}
+
+static BOOL _RemoveBSTree(BSTNode* p, ElemType key) //删除结点子函数
+{
+
+}
+
+BSTNode* BSTreeSearch(BST T, ElemType key)        //指定结点搜索
+{
+		  assert(T.root != NULL);
+		  return _BSTreeSearch(T.root, key);
+}
+
+static BSTNode* _BSTreeSearch(BSTNode* p, ElemType key)  //搜索结点子函数
+{
+		  BOOL flag = 0;				//是否找到标识
+		  BSTNode* temp = p;
+		  while (temp != NULL)
+		  {
+					if (temp->data == key)
+					{
+							  flag = 1;
+							  break;
+					}
+					else if (temp->data > key)         //搜索的数值大于根节点
+					{
+							  temp = temp->rchild;
+					}
+					else
+					{
+							  temp = temp->lchild;
+					}
+		  }
+		  return (flag ? temp : NULL);
+
+}
+
 ElemType FindMaximum(BST T)           //求最大
 {
 		  assert(T.root != NULL);

@@ -9,6 +9,7 @@ int main()
 		  {
 					InsertBSTreeIterate(&T, arr[i]);
 		  }
+
 		  DestroyBSTree(&T);
 		  return 0;
 }

@@ -33,6 +33,14 @@ static BOOL _InsertBSTree(BSTNode** node, ElemType arr);           //²åÈë¹¹½¨µÄ×
 BOOL InsertBSTreeIterate(BST* T, ElemType arr);         // ¶þ²æÅÅÐòÊ÷µÄµü´ú²åÈë¹¹½¨
 static BOOL _InsertBSTreeIterate(BSTNode** node, ElemType arr);           // ¶þ²æÅÅÐòÊ÷µÄµü´ú²åÈë¹¹½¨
 
+////////////////////////////////////////////////////////////¶þ²æÊ÷µÄ½áµãÉ¾³ý²Ù×÷/////////////////////////////////////////////////////
+BOOL RemoveBSTree(BST T, ElemType key);          //Ö¸¶¨½áµãÉ¾³ý
+static BOOL _RemoveBSTree(BSTNode* p, ElemType key);  //É¾³ý½áµã×Óº¯Êý
+
+////////////////////////////////////////////////////////////¶þ²æÊ÷µÄ½áµãËÑË÷º¯Êý/////////////////////////////////////////////////////
+BSTNode * BSTreeSearch(BST T, ElemType key);          //Ö¸¶¨½áµãËÑË÷
+static BSTNode* _BSTreeSearch(BSTNode* p, ElemType key);  //ËÑË÷½áµã×Óº¯Êý
+
 ////////////////////////////////////////////////////////////¶þ²æÊ÷µÄ¼«Öµ»ñÈ¡/////////////////////////////////////////////////////
 ElemType FindMaximum(BST T);            //Çó×î´ó
 static ElemType _FindMaximum(BSTNode* p);       //Çó×î´ó×Óº¯Êý
