@@ -133,3 +133,19 @@ static ElemType _FindMininum(BSTNode* p)               //求最小子函数
 		  }
 		  return ptemp->data;
 }
+
+void BSTSort(BST T)                 //排序
+{
+		  assert(T.root != NULL);
+		  _BSTSort(T.root);
+		  printf("\n");
+}
+static void _BSTSort(BSTNode* p)      //排序子函数
+{
+		  if (p != NULL)
+		  {
+					_BSTSort(p->lchild);
+					printf("%d ", p->data);
+					_BSTSort(p->rchild);
+		  }
+}

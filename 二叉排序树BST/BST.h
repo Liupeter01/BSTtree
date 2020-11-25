@@ -39,3 +39,7 @@ static ElemType _FindMaximum(BSTNode* p);       //求最大子函数
 
 ElemType FindMininum(BST T);               //求最小
 static ElemType _FindMininum(BSTNode* p);               //求最小子函数
+
+////////////////////////////////////////////////////////////二叉树的排序/////////////////////////////////////////////////////
+void BSTSort(BST T);                    //排序
+static void _BSTSort(BSTNode* p);       //排序子函数
