@@ -7,7 +7,7 @@ int main()
 		  ElemType arr[] = { 45,12,53,3,37,100,24,61,90,78 };
 		  for (int i = 0; i < sizeof(arr) / sizeof(ElemType); ++i)
 		  {
-					InsertBSTree(&T, arr[i]);
+					InsertBSTreeIterate(&T, arr[i]);
 		  }
 		  DestroyBSTree(&T);
 		  return 0;

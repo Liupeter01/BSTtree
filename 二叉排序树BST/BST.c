@@ -30,7 +30,7 @@ static void _DestroyBSTree(BSTNode* p)  //二叉树的销毁子函数
 		  }
 }
 
-BOOL InsertBSTree(BST* T, ElemType arr)           // 二叉排序树的插入构建
+BOOL InsertBSTree(BST* T, ElemType arr)           // 二叉排序树的递归插入构建
 {
 		  return _InsertBSTree(&(T->root), arr);
 }
@@ -58,4 +58,78 @@ static BOOL _InsertBSTree(BSTNode** node, ElemType arr)           //插入构建的子
 					}
 		  }
 		  return FALSE;
+}
+
+BOOL InsertBSTreeIterate(BST* T, ElemType arr)           // 二叉排序树的迭代插入构建
+{
+		  return _InsertBSTreeIterate(&(T->root), arr);
+}
+
+static BOOL _InsertBSTreeIterate(BSTNode** node, ElemType arr)           // 二叉排序树的迭代插入构建
+{
+		  if (*node == NULL)  //没有根节点
+		  {
+					*node = CreateBSTNode(arr);
+					return TRUE;
+		  }
+		  else
+		  {
+					BSTNode* ptemp = *node;		
+					BSTNode* parent = NULL;		  //记录前驱
+					while (ptemp != NULL && ptemp->data != arr)	//不可以重复
+					{
+							  parent = ptemp;
+							  if (ptemp->data > arr)
+							  {
+										ptemp = ptemp->rchild;					//大于根节点，去右子树
+							  }
+							  else if (ptemp->data < arr)
+							  {
+										ptemp = ptemp->lchild;					//小于根节点，去左子树
+							  }
+					}
+					ptemp = CreateBSTNode(arr);	  //创建结点
+					if (parent->data > arr)					//结点应该插入到其父节点的右子树
+					{
+							  parent->rchild = ptemp;
+					}
+					else if (parent->data < arr)			//结点应该插入到其父节点的左子树
+					{
+							  parent->lchild = ptemp;
+					}
+					return TRUE;
+		  }
+		  return FALSE;
+}
+
+ElemType FindMaximum(BST T)           //求最大
+{
+		  assert(T.root != NULL);
+		  return _FindMaximum(T.root);
+}
+
+static ElemType _FindMaximum(BSTNode* p)       //求最大子函数
+{
+		  BSTNode* ptemp = p;
+		  while (ptemp->rchild != NULL)
+		  {
+					ptemp = ptemp->rchild;
+		  }
+		  return ptemp->data;
+}
+
+ElemType FindMininum(BST T)               //求最小
+{
+		  assert(T.root != NULL);
+		  return _FindMininum(T.root);
+}
+
+static ElemType _FindMininum(BSTNode* p)               //求最小子函数
+{
+		  BSTNode* ptemp = p;
+		  while (ptemp->lchild != NULL)
+		  {
+					ptemp = ptemp->lchild;
+		  }
+		  return ptemp->data;
 }
