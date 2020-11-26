@@ -152,24 +152,29 @@ static BOOL _RemoveBSTree(BSTNode** p, ElemType key) //删除结点子函数
 		  }
 		  else
 		  {
-					if ((*p)->lchild == NULL && (*p)->rchild == NULL)			 //被删除的结点属于叶子节点(左右子树都为空)直接删除
-					{
-							  free(*p);
-							  *p = NULL;
-					}
 					BSTNode* ptemp = NULL;
-					if ((*p)->lchild == NULL && (*p)->rchild != NULL)		//被删除的结点只有一子树(左子树为空，右子树非空)
+					if ((*p)->lchild != NULL && (*p)->rchild != NULL)	 //左右子树都不空的情况(最复杂)
 					{
-							  ptemp = (*p)->rchild;					  //指向删除结点的右孩子
+							  ptemp = (*p)->rchild;
+							  while (ptemp->lchild != NULL)	//寻找最左边
+							  {
+										ptemp = ptemp->lchild;
+							  }
+							  (*p)->data = ptemp->data;		//使用直接后继的数据替代删除的结点
+							  _RemoveBSTree(&((*p)->rchild), (*p)->data);		//递归调用
+					}
+					else
+					{
+							  if ((*p)->lchild == NULL)
+							  {
+										ptemp = (*p)->rchild;					  //指向删除结点的右孩子
+							  }
+							  else
+							  {
+										ptemp = (*p)->lchild;					  //指向删除结点的左孩子
+							  }
 							  free(*p);											  //删除原先结点
 							  *p = ptemp;									  //使用右孩子替代删除结点
-					}
-
-					if ((*p)->lchild != NULL && (*p)->rchild == NULL)		//被删除的结点只有一子树(左子树非空，右子树为空)
-					{
-							  ptemp = (*p)->lchild;					  //指向删除结点的左孩子
-							  free(*p);											   //删除原先结点
-							  *p = ptemp;									 //使用左孩子替代删除结点
 					}
 					return TRUE;
 		  }
