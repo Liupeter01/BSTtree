@@ -87,6 +87,10 @@ static BOOL _InsertBSTreeIterate(BSTNode** node, ElemType arr)           // 二叉
 							  {
 										ptemp = ptemp->lchild;					//小于根节点，去左子树
 							  }
+							  else														    //考虑插入重复的情况
+							  {
+										return FALSE;
+							  }
 					}
 					ptemp = CreateBSTNode(arr);	  //创建结点
 					if (parent->data > arr)					//结点应该插入到其父节点的右子树
