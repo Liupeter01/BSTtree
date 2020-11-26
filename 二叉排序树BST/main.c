@@ -10,6 +10,10 @@ int main()
 					InsertBSTreeIterate(&T, arr[i]);
 		  }
 
+		  RemoveBSTree(&T, 37);
+
+		  BSTSort(T);
+
 		  DestroyBSTree(&T);
 		  return 0;
 }

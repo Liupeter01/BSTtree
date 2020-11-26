@@ -102,17 +102,6 @@ static BOOL _InsertBSTreeIterate(BSTNode** node, ElemType arr)           // 二叉
 		  return FALSE;
 }
 
-BOOL RemoveBSTree(BST T, ElemType key)         //指定结点删除
-{
-		  assert(T.root != NULL);
-		  return _RemoveBSTree(T.root, key);
-}
-
-static BOOL _RemoveBSTree(BSTNode* p, ElemType key) //删除结点子函数
-{
-
-}
-
 BSTNode* BSTreeSearch(BST T, ElemType key)        //指定结点搜索
 {
 		  assert(T.root != NULL);
@@ -140,7 +129,51 @@ static BSTNode* _BSTreeSearch(BSTNode* p, ElemType key)  //搜索结点子函数
 					}
 		  }
 		  return (flag ? temp : NULL);
+}
 
+BOOL RemoveBSTree(BST *T, ElemType key)         //指定结点删除
+{
+		  return _RemoveBSTree(&(T->root), key);
+}
+
+static BOOL _RemoveBSTree(BSTNode** p, ElemType key) //删除结点子函数
+{
+		  if (*p == NULL)
+		  {
+					return FALSE;
+		  }
+		  else if((*p)->data > key)
+		  {
+					_RemoveBSTree(&((*p)->rchild), key);	//大于根节点，去右子树
+		  }
+		  else if ((*p)->data < key)
+		  {
+					_RemoveBSTree(&((*p)->lchild), key);	//小于根节点，去左子树
+		  }
+		  else
+		  {
+					if ((*p)->lchild == NULL && (*p)->rchild == NULL)			 //被删除的结点属于叶子节点(左右子树都为空)直接删除
+					{
+							  free(*p);
+							  *p = NULL;
+					}
+					BSTNode* ptemp = NULL;
+					if ((*p)->lchild == NULL && (*p)->rchild != NULL)		//被删除的结点只有一子树(左子树为空，右子树非空)
+					{
+							  ptemp = (*p)->rchild;					  //指向删除结点的右孩子
+							  free(*p);											  //删除原先结点
+							  *p = ptemp;									  //使用右孩子替代删除结点
+					}
+
+					if ((*p)->lchild != NULL && (*p)->rchild == NULL)		//被删除的结点只有一子树(左子树非空，右子树为空)
+					{
+							  ptemp = (*p)->lchild;					  //指向删除结点的左孩子
+							  free(*p);											   //删除原先结点
+							  *p = ptemp;									 //使用左孩子替代删除结点
+					}
+					return TRUE;
+		  }
+		  return FALSE;
 }
 
 ElemType FindMaximum(BST T)           //求最大

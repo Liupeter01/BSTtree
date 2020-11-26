@@ -34,8 +34,8 @@ BOOL InsertBSTreeIterate(BST* T, ElemType arr);         // ¶þ²æÅÅÐòÊ÷µÄµü´ú²åÈë¹
 static BOOL _InsertBSTreeIterate(BSTNode** node, ElemType arr);           // ¶þ²æÅÅÐòÊ÷µÄµü´ú²åÈë¹¹½¨
 
 ////////////////////////////////////////////////////////////¶þ²æÊ÷µÄ½áµãÉ¾³ý²Ù×÷/////////////////////////////////////////////////////
-BOOL RemoveBSTree(BST T, ElemType key);          //Ö¸¶¨½áµãÉ¾³ý
-static BOOL _RemoveBSTree(BSTNode* p, ElemType key);  //É¾³ý½áµã×Óº¯Êý
+BOOL RemoveBSTree(BST *T, ElemType key);          //Ö¸¶¨½áµãÉ¾³ý
+static BOOL _RemoveBSTree(BSTNode** p, ElemType key);  //É¾³ý½áµã×Óº¯Êý
 
 ////////////////////////////////////////////////////////////¶þ²æÊ÷µÄ½áµãËÑË÷º¯Êý/////////////////////////////////////////////////////
 BSTNode * BSTreeSearch(BST T, ElemType key);          //Ö¸¶¨½áµãËÑË÷
